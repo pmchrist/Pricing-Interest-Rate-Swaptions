@@ -1,12 +1,27 @@
 Main objectives:
     Model Interest Rates (Start with Hull-White model, to consider LIBOR, Real World data calibration, something else?)
-    Price in the Swaption (Start with Longstaff Schwarz Model(LSM) routine)
-    Add Greeks and Surface
+        Spot - Quoted Today
+        Implied - Next Rate
+        Hull-White is instantaneous Rate (Short)
+        Forward Rate is what is expected (Implied Rate)
+        Price in the Swaption (Start with Longstaff Schwarz Model(LSM) routine)
+        Which Term Structure to Asssume
+        Calculate Swap Option value for each Initial Fixed Rate
+        Add Greeks and Surface
+        We obtain volatility from pricing of actual real world option.
     ???
+
+    Swap (underlying rate, dates, fixed rate, yield curve)
+    zero coupon bond
+
+    ToDo:
+        Price in IR Swap first  (Does not need a model, uses forward rates)
+        Price in Swaption
+
 
     Questions:
         What is the difference and usecase between Short (is it the same as instantaneous?) and Forward rate models?
         Where can we get data for calibration?
         What are some interesting examples from real world of Bermuda Option Payoff?
         How to validate result? Only parts?
-        Shouldn't the Bermuda option with more often available exercise be more expensive?
+        Shouldn't the Bermuda option with more often available exercise be more expensive? Any other sanity checks?
