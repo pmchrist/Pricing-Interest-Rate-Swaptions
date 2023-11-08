@@ -25,3 +25,8 @@ Main objectives:
         What are some interesting examples from real world of Bermuda Option Payoff?
         How to validate result? Only parts?
         Shouldn't the Bermuda option with more often available exercise be more expensive? Any other sanity checks?
+
+    Questions 2:
+        Why do people use PCA for Volatility surface?
+        Did not udnerstand manual, read book. Took too much time, but now udnerstand manual and see what needed to be done.
+        Did you understand everything during your bachelors for example?
