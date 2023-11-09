@@ -30,3 +30,5 @@ Main objectives:
         Why do people use PCA for Volatility surface?
         Did not udnerstand manual, read book. Took too much time, but now udnerstand manual and see what needed to be done.
         Did you understand everything during your bachelors for example?
+        Should we prioritize optimizations or features?
+        Check more in the notebook
