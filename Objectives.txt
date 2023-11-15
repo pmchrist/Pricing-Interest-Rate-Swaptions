@@ -42,14 +42,14 @@
     
 
     ToDo:
-        Fix Discount Value in LSM
+        Fix Discount Value in LSM   (Done)
             For discount rate we should use integral of all intermediate short rates
 
         Implement all Greeks (Follow same idea as for other Monte Carlo based evaluations)
         Add tests/experiments for Greeks:
             For Delta bump and revalue with different epsilon(too low (i.e. <10^-6) we lose on machine precision, too big we lose on accuracy)
 
-        Rename Variables:
+        Rename Variables:   (Leave it to the code review, after we complete all the necessary stuff)
             Pay Out Rate is called Tenor
             Strike(K) is called Fixed Rate
 
