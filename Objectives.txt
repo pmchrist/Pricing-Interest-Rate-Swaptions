@@ -54,9 +54,10 @@
             Strike(K) is called Fixed Rate
 
         Add tests/experiments in general, some ideas:
-            How value of Swap changes based on the fixed rate (K)
-            Check convergence of simulation results, get confidence intervals, etc. (Final runs should be performed on around 10_000 simulations)
-            Vary Yield Curve to see the change in valuation, and other HW params
+            Tests for presentation:
+                How value of Swap changes based on the fixed rate (K)
+                Check convergence of simulation results, get confidence intervals, etc. (Final runs should be performed on around 10_000 simulations)
+                Vary Yield Curve to see the change in valuation, and other HW params
             +Computation Time vs Convergence (it should run for a minute or two, ideally)
             +We can validate Hull-White model's simulation results by comparing obtained results with what mean and sigma would be for correct implementation with the given parameters (there is an analytical solution)
             +Try to change yield curve, use fixed horizontal line, inverted, non inverted, real life(from ECB)
