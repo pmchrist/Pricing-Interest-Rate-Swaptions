@@ -34,4 +34,137 @@ How algorithms work:
         - Calculate the realization matrix, if swap>0 and swap>continuation value we should realize and nullify all subsequent cashflows. Else we just keep already expected cashflow and discount it for the previous point of exercise. Update expected cashflow matrix and continue until t=0
         - Discount swap values at the points of exercise in the realization matrix. Average and we have a Bermudan swaption value.
     - European, we just calculate swap values for HW simulated paths and find average
-    
+
+
+Results:
+Possible Explanation for difference with QuantLib swap value is the way we get Theta, we need to check how it is obtained in QuantLib
+Additionally, swaption value is deterministic with Hull White model in QuantLib, so is there a close solution?
+
+
+Simulations: 100, High Variance
+
+(Behaves like simple swap)
+Params(Flat, Tm=8, tenor=0.5, r0=0.04, a=0.01, sigma, K, sims):  0.01 0.02 100
+100%|██████████| 20/20 [01:50<00:00,  5.52s/it]
+Our Bermudan Swaption Value is:  0.12370803370151366 , with a ci: [ 0.12370803370151366 ,  0.12370803370151366 ]
+QuantLib Bermudan Swaption Value is:  0.12931582179143458
+Our Swap Value is:  0.12370803370151362
+Quantlib Swap Value is:  0.128235330528664
+
+(We can see how there is some value, because of variance)
+Params(Flat, Tm=8, tenor=0.5, r0=0.04, a=0.01, sigma, K, sims):  0.01 0.04 100
+100%|██████████| 20/20 [01:53<00:00,  5.68s/it]
+Our Bermudan Swaption Value is:  0.032655286479527965 , with a ci: [ 0.031259713086050314 ,  0.034050859873005615 ]
+QuantLib Bermudan Swaption Value is:  0.039097755876575636
+Our Swap Value is:  -0.002474403285908977
+Quantlib Swap Value is:  0.00253039710915387
+
+(Lower value, higher relative variance)
+Params(Flat, Tm=8, tenor=0.5, r0=0.04, a=0.01, sigma, K, sims):  0.01 0.06 100
+100%|██████████| 20/20 [01:49<00:00,  5.45s/it]
+Our Bermudan Swaption Value is:  0.007222812059977548 , with a ci: [ 0.0065298384652268055 ,  0.007915785654728292 ]
+QuantLib Bermudan Swaption Value is:  0.008545298572776482
+Our Swap Value is:  -0.12865684027333152
+Quantlib Swap Value is:  -0.12317453631035552
+
+Simulations: 100, Low Variance
+
+(Behaves like simple swap)
+Params(Flat, Tm=8, tenor=0.5, r0=0.04, a=0.01, sigma, K, sims):  0.002 0.02 100
+100%|██████████| 20/20 [01:49<00:00,  5.46s/it]
+Our Bermudan Swaption Value is:  0.12370803370151366 , with a ci: [ 0.12370803370151366 ,  0.12370803370151366 ]
+QuantLib Bermudan Swaption Value is:  0.12823533052866415
+Our Swap Value is:  0.12370803370151362
+Quantlib Swap Value is:  0.128235330528664
+
+(We can see how there is some value, much lower because of low variance)
+Params(Flat, Tm=8, tenor=0.5, r0=0.04, a=0.01, sigma, K, sims):  0.002 0.04 100
+100%|██████████| 20/20 [01:50<00:00,  5.52s/it]
+Our Bermudan Swaption Value is:  0.0059491835591827255 , with a ci: [ 0.005745601712972186 ,  0.006152765405393265 ]
+QuantLib Bermudan Swaption Value is:  0.008670044988181035
+Our Swap Value is:  -0.002474403285908977
+Quantlib Swap Value is:  0.00253039710915387
+
+(No values, because of low variance no paths in money)
+Params(Flat, Tm=8, tenor=0.5, r0=0.04, a=0.01, sigma, K, sims):  0.002 0.06 100
+100%|██████████| 20/20 [01:49<00:00,  5.48s/it]
+Our Bermudan Swaption Value is:  0.0 , with a ci: [ 0.0 ,  0.0 ]
+QuantLib Bermudan Swaption Value is:  1.2972518244625005e-07
+Our Swap Value is:  -0.12865684027333152
+Quantlib Swap Value is:  -0.12317453631035552
+
+
+Simulations: 1000, High Variance
+
+(Still performs as swap)
+Params(Flat, Tm=8, tenor=0.5, r0=0.04, a=0.01, sigma, K, sims):  0.01 0.02 1000
+100%|██████████| 20/20 [03:20<00:00, 10.05s/it]
+Our Bermudan Swaption Value is:  0.12370803370151369 , with a ci: [ 0.12370803370151369 ,  0.12370803370151369 ]
+QuantLib Bermudan Swaption Value is:  0.12931582179143458
+Our Swap Value is:  0.12370803370151362
+Quantlib Swap Value is:  0.128235330528664
+
+(Much smaller discrepancy between evaluations)
+Params(Flat, Tm=8, tenor=0.5, r0=0.04, a=0.01, sigma, K, sims):  0.01 0.04 1000
+100%|██████████| 20/20 [03:21<00:00, 10.07s/it]
+Our Bermudan Swaption Value is:  0.03219615020462856 , with a ci: [ 0.031804812278565804 ,  0.03258748813069131 ]
+QuantLib Bermudan Swaption Value is:  0.039097755876575636
+Our Swap Value is:  -0.002474403285908977
+Quantlib Swap Value is:  0.00253039710915387
+
+(Much smaller discrepancy between evaluations)
+Params(Flat, Tm=8, tenor=0.5, r0=0.04, a=0.01, sigma, K, sims):  0.01 0.06 1000
+100%|██████████| 20/20 [03:17<00:00,  9.89s/it]
+Our Bermudan Swaption Value is:  0.006762636079380653 , with a ci: [ 0.006559959740219263 ,  0.006965312418542043 ]
+QuantLib Bermudan Swaption Value is:  0.008545298572776482
+Our Swap Value is:  -0.12865684027333152
+Quantlib Swap Value is:  -0.12317453631035552
+
+Simulations: 1000, Low Variance
+
+Params(Flat, Tm=8, tenor=0.5, r0=0.04, a=0.002, sigma, K, sims):  0.002 0.04 1000
+Did not run, performs as swap even with higher sigma
+
+(In line with earlier)
+Params(Flat, Tm=8, tenor=0.5, r0=0.04, a=0.01, sigma, K, sims):  0.002 0.04 1000
+100%|██████████| 20/20 [03:19<00:00,  9.98s/it]
+Our Bermudan Swaption Value is:  0.005659343687323227 , with a ci: [ 0.005568568760033513 ,  0.005750118614612941 ]
+QuantLib Bermudan Swaption Value is:  0.008670044988181035
+Our Swap Value is:  -0.002474403285908977
+Quantlib Swap Value is:  0.00253039710915387
+
+(Still no path in money)
+Params(Flat, Tm=8, tenor=0.5, r0=0.04, a=0.01, sigma, K, sims):  0.002 0.06 1000
+100%|██████████| 20/20 [03:17<00:00,  9.88s/it]
+Our Bermudan Swaption Value is:  0.0 , with a ci: [ 0.0 ,  0.0 ]
+QuantLib Bermudan Swaption Value is:  1.2972518244625005e-07
+Our Swap Value is:  -0.12865684027333152
+Quantlib Swap Value is:  -0.12317453631035552
+
+
+Simulations: 10000, High Variance
+
+(We managed to get one out the money path, but it is negligable)
+Params(Flat, Tm=8, tenor=0.5, r0=0.04, a=0.01, sigma, K, sims):  0.01 0.02 10000
+100%|██████████| 10/10 [09:37<00:00, 57.78s/it]
+Our Bermudan Swaption Value is:  0.12370803370151369 , with a ci: [ 0.12370803370151368 ,  0.1237080337015137 ]
+QuantLib Bermudan Swaption Value is:  0.12931582179143458
+Our Swap Value is:  0.12370803370151362
+Quantlib Swap Value is:  0.128235330528664
+
+(Better confidence interval, converges better)
+Params(Flat, Tm=8, tenor=0.5, r0=0.04, a=0.01, sigma, K, sims):  0.01 0.04 10000
+100%|██████████| 10/10 [09:19<00:00, 55.96s/it]
+Our Bermudan Swaption Value is:  0.031896814768757574 , with a ci: [ 0.03170675229210811 ,  0.032086877245407035 ]
+QuantLib Bermudan Swaption Value is:  0.039097755876575636
+Our Swap Value is:  -0.002474403285908977
+Quantlib Swap Value is:  0.00253039710915387
+
+(Better confidence interval, converges better)
+Params(Flat, Tm=8, tenor=0.5, r0=0.04, a=0.01, sigma, K, sims):  0.01 0.06 10000
+100%|██████████| 10/10 [09:28<00:00, 56.89s/it]
+Our Bermudan Swaption Value is:  0.006461760679774336 , with a ci: [ 0.006342447926375401 ,  0.006581073433173271 ]
+QuantLib Bermudan Swaption Value is:  0.008545298572776482
+Our Swap Value is:  -0.12865684027333152
+Quantlib Swap Value is:  -0.12317453631035552
+
