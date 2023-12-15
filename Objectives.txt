@@ -71,3 +71,11 @@
         After mid-term:
             Improve and experiment with LSM.
             Investigate other short-rate models.
+
+
+
+
+Questions Last:
+    When we fit onto 0th point, the whole matrix is of the same values=r0. Thus polynomial fit fails, as there is no variance.
+    In LSM for American we do not evaluate at t=0. But why?
+    Aren't we just overfitting? We regress over the same thing we later feed into the model.
