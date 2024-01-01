@@ -1,2 +1,5 @@
 # Pricing-Interest-Rate-Swaptions
-Pricing Bermudan Swaptions with LSM for Interest Rate modelled with Hull-White Model
+
+In this repository we will explore the pricing of Bermudan Swaptions. To do so we first research how interest modeling works, and implement a One Factor Hull-White Model for Short Rates. On top of this we build up necessary toolkit to price Swaption. In detail, we price zero-coupon bonds and swaps, which are necessary pieces to price a Bermudan Swaption. To price swaption itself we use a Least-Squares Monte Carlo algorithm introduced by Longstaff-Schwarz (LSM). We validate our stochastic prices against an analytical solution obtained with the Trinomial Tree.
+With the obtained model few experiments were performed. First, we priced Bermudan Swaptions of different maturities and tenors. Second, we explored different forms of regression for the LSM to improve the results. Finally, we experimented with the calculation of delta and gamma for different strike rates.
+We found that LSM is a robust method for pricing Bermudan Swaptions and that the Least Squares regression with the Laguerre Polynomials offers the best fit. Additionally, we found that curve for Delta of the Bermudan Swaption is less steep than for the European one. 
